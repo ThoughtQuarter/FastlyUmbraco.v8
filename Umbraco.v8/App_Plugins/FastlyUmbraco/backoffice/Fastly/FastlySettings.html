@@ -1,0 +1,113 @@
+﻿<div id="fastlyIntro" ng-controller="FastlySettingsController as vm" class="clearfix">
+	<umb-editor-view footer="false">
+		<umb-editor-header name="vm.title"
+						   name-locked="true"
+						   hide-icon="true"
+						   hide-description="true"
+						   hide-alias="true">
+		</umb-editor-header>
+
+		<umb-editor-container>
+			<umb-box>
+				<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+				<umb-box-content class="container-fluid clearfix" ng-show="!vm.loading">
+					<div>
+						<!--Domain-->
+						<ng-form name="settingForm" class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">Domain</p>
+								<small class="break-text">The domain name fastly uses to route requests to your service, include www at the start</small>
+							</div>
+							<div class="span8">
+								<input class="ml4 mb0 umb-property-editor umb-textstring textstring" type="url" placeholder="https://www.example.com/" name="vm.settings.domainURLInput" ng-model="vm.settings.Domain">
+							</div>
+						</ng-form>
+
+						<hr>
+
+						<!--AppID-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">AppID</p>
+								<small class="break-text">Also known as ServiceID. Requires Restart to take effect</small>
+							</div>
+							<div class="span8">
+								<input class="ml4 mb0 umb-property-editor umb-textstring textstring" type="text" ng-model="vm.settings.AppID">
+							</div>
+						</div>
+
+						<hr>
+
+						<!--APIKey-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">API Key</p>
+								<small class="break-text">Requires Restart to take effect</small>
+							</div>
+							<div class="span8">
+								<input class="ml4 mb0 umb-property-editor umb-textstring textstring" type="text" ng-model="vm.settings.APIKey">
+							</div>
+						</div>
+
+						<hr>
+
+						<!--Purge On Publish-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">Purge On Publish</p>
+								<small>Requires server restart to update</small>
+							</div>
+							<div class="span8">
+								<umb-toggle class="ml4" checked="vm.settings.PurgeOnPublish" id="PurgeOnPublish" on-click="vm.PurgeOnPublishToggle()"></umb-toggle>
+							</div>
+						</div>
+
+						<hr>
+
+						<!--Stale While In Validate-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">Stale While In Validate</p>
+							</div>
+							<div class="span8">
+								<select class="ml4 mb0 umb-property-editor umb-dropdown" ng-model="vm.settings.StaleWhileInValidate" ng-options="x for (x,y) in vm.dropdownOptions"></select>
+							</div>
+						</div>
+
+						<hr>
+
+						<!--Stale If Error-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">Stale If Error</p>
+							</div>
+							<div class="span8">
+								<select class="ml4 mb0 umb-property-editor umb-dropdown" ng-model="vm.settings.StaleIfError" ng-options="x for (x,y) in vm.dropdownOptions"></select>
+							</div>
+						</div>
+
+						<hr>
+
+						<!--Surrogate Control Max Age-->
+						<div class="row mb2">
+							<div class="span2" style="width: 160px;">
+								<p class="bold">Surrogate Control Max Age</p>
+							</div>
+							<div class="span8">
+								<select class="ml4 mb0 umb-property-editor umb-dropdown" ng-model="vm.settings.SurrogateControlMaxAge" ng-options="x for (x,y) in vm.dropdownOptions"></select>
+								<!--<input class="ml4 mb0 umb-property-editor umb-textstring textstring" string-to-number type="number" ng-model="vm.settings.SurrogateControlMaxAge">-->
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row pull-right">
+							<button type="button" class="btn {{vm.saveButtonClass}}" ng-click="vm.saveSettings()"><span>{{vm.saveButtonText}}</span></button>
+						</div>
+					</div>
+				</umb-box-content>
+			</umb-box>
+		</umb-editor-container>
+	</umb-editor-view>
+</div>

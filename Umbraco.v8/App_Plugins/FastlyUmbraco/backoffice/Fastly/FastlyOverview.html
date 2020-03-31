@@ -1,0 +1,88 @@
+﻿<div id="fastlyIntro" ng-controller="FastlyOverviewController as vm" class="clearfix">
+	<umb-editor-view footer="false">
+		<umb-editor-header name="vm.title"
+						   name-locked="true"
+						   hide-icon="true"
+						   hide-description="true"
+						   hide-alias="true">
+		</umb-editor-header>
+
+		<umb-editor-container>
+			<umb-box>
+				<umb-box-content>
+					<div class="pull-right">
+						<a href="https://www.everest-media.co.uk/" target="_blank">
+							<img src="https://media.licdn.com/dms/image/C4D0BAQGSdakyCS3GKg/company-logo_200_200/0?e=2159024400&v=beta&t=gSBgXTKJSp0Ey3XU-D-EB5_TKctShGAXlf0_bPx7NT4" alt="Everest Media Logo" height="50" width="50" />
+							<p class="btn-link -underline">Everest Media Ltd</p>
+						</a>
+					</div>
+
+					<h3 class="bold">Fastly Dashboard</h3>
+
+					<h5>Requirements</h5>
+					<ul>
+						<li>An account with a service setup with API access on <a href="https://www.fastly.com" target="_blank">fastly.com</a></li>
+						<li>Add the "Fastly Cache" Document Type to new pages via <a href="https://umbraco.tv/videos/umbraco-v7/implementor/fundamentals/document-types/folders-and-compositions/" target="_blank">compositions</a></li>
+						<li>Fill in settings for fastly API Key, AppID (Service ID) and domain name in the <a href="#/fastlyUmbraco/Fastly/FastlySettings">Settings Section</a></li>
+					</ul>
+
+					<h5>Quick Purge:</h5>
+
+					<div class="mb3 row">
+						<div class="d-flex">
+							<button type="button" class="btn btn-danger" ng-click="vm.purgeall()"><span>Purge All</span></button>
+						</div>
+					</div>
+					<div class="mb3 row">
+						<div class="d-flex">
+							<span>Full Url:</span>
+							<input style="margin-bottom: 0" type="url" placeholder="URL to purge..." ng-model="vm.urlInput">
+							<button type="button" class="btn btn-danger" ng-click="vm.purgeurl()">Purge URL</button>
+						</div>
+					</div>
+					
+					<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+					<div ng-show="!vm.loading" class="container-fluid">
+						<h5>Stats:</h5>
+
+						<div class="row">
+							<!--Hit Ratio-->
+							<div class="span6">
+								<h5 class="text-center ml4">HIT RATIO</h5>
+								<p class="text-center ml4">Avg: {{vm.hitRatioAvg}}</p>
+								<div class="chart-container" style="position: relative;">
+									<canvas id="hitPercentChart"></canvas>
+								</div>
+							</div>
+							<!--Requests-->
+							<div class="span6">
+								<h5 class="text-center ml4">REQUESTS</h5>
+								<p class="text-center ml4">Avg: {{vm.requestAvg}}</p>
+								<div class="chart-container" style="position: relative;">
+									<canvas id="requestsChart"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!--Error Ratio-->
+							<div class="span6">
+								<h5 class="text-center ml4">ERROR RATIO</h5>
+								<div class="chart-container" style="position: relative;">
+									<canvas id="errorRatioChart"></canvas>
+								</div>
+							</div>
+							<!--Http Client and Server Errors-->
+							<div class="span6">
+								<h5 class="text-center ml4">HTTP CLIENT AND SERVER ERRORS</h5>
+								<div class="chart-container" style="position: relative;">
+									<canvas id="httpErrorsChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</umb-box-content>
+			</umb-box>
+		</umb-editor-container>
+	</umb-editor-view>
+</div>

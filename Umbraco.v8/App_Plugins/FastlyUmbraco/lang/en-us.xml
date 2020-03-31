@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+	<area alias="sections">
+		<key alias="fastlyUmbraco">Fastly</key>
+	</area>
+	<area alias="treeHeaders">
+		<key alias="fastlyGroup">Fastly</key>
+	</area>
+</language>
